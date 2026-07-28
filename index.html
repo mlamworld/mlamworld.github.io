@@ -70,6 +70,40 @@
     <button id="btn_1">Кнопка 1</button>
     <button id="btn_2">Кнопка 2</button>
 
+	<!-- Кнопка с эффектом свечения -->
+<button class="neon-button" onclick="alert('Привет! Спасибо, что нажали!')">
+  ✨ Нажми меня
+</button>
+
+<!-- Стили для кнопки (можно вставить в <head> или <style> внутри body) -->
+<style>
+  .neon-button {
+    padding: 15px 40px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(102, 126, 234, 0.5);
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: 'Arial', sans-serif;
+  }
+
+  .neon-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 40px rgba(102, 126, 234, 0.8);
+    background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+  }
+
+  .neon-button:active {
+    transform: scale(0.95);
+  }
+</style>
+
 </body>
 </html>
 	

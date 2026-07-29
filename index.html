@@ -1,129 +1,698 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-	<!-- Контейнер попап !-->
-<script>
-    (function (window, document, dataLayerName, containerID) {
-        window[dataLayerName] = window[dataLayerName] || [];
-        window[dataLayerName].push({ 'start': new Date().getTime(), event: 'actm-js' });
-        var firstScript = document.getElementsByTagName('script')[0];
-        var script = document.createElement('script');
-        var dl = dataLayerName !== 'acDataLayer' ? '&l=' + dataLayerName : '';
-        script.async = true;
-        script.src = 'https://pxl.demo.altcraft.com/actm/js/actm.js?id=' + containerID + dl;
-        script.type = 'module';
-        if (firstScript && firstScript.parentNode) {
-            firstScript.parentNode.insertBefore(script, firstScript);
-        }
-    }(window, document, 'acDataLayer', 'ATM-3dgUhiQM1fBPkj_TW'));
-</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BookStore — интернет-магазин книг</title>
 
-	
-	<!-- Контейнер менеджер тегов !-->
-<script>
-    (function (window, document, dataLayerName, containerID) {
-        window[dataLayerName] = window[dataLayerName] || [];
-        window[dataLayerName].push({ 'start': new Date().getTime(), event: 'actm-js' });
-        var firstScript = document.getElementsByTagName('script')[0];
-        var script = document.createElement('script');
-        var dl = dataLayerName !== 'acDataLayer' ? '&l=' + dataLayerName : '';
-        script.async = true;
-        script.src = 'https://pxl.demo.altcraft.com/actm/js/actm.js?id=' + containerID + dl;
-        script.type = 'module';
-        if (firstScript && firstScript.parentNode) {
-            firstScript.parentNode.insertBefore(script, firstScript);
-        }
-    }(window, document, 'acDataLayer', 'ATM-5gNRhd1qHbpoOJj06'));
-</script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Урок 5. Тестирование браузерных пушей</title>
-    <script src="https://pxl.demo.altcraft.com/ak_container.js?id=NjE1fDM=" ></script>
-	
+  <!-- Подключаем шрифты -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ===== ОБЩИЙ СБРОС ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: #f8f9fa;
+      color: #1a1a2e;
+      line-height: 1.5;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+
+    /* ===== КОНТЕЙНЕР ===== */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* ===== ШАПКА ===== */
+    .header {
+      background-color: #1a1a2e;
+      color: #ffffff;
+      padding: 16px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-icon {
+      font-size: 28px;
+    }
+
+    .logo-text {
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+
+    .logo-text span {
+      color: #f5a623;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .header-btn {
+      background: none;
+      border: none;
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      padding: 8px 16px;
+      border-radius: 8px;
+      transition: background 0.2s;
+    }
+
+    .header-btn:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .header-btn.primary {
+      background-color: #f5a623;
+      color: #1a1a2e;
+      font-weight: 600;
+    }
+
+    .header-btn.primary:hover {
+      background-color: #e09515;
+    }
+
+    /* ===== ГЛАВНЫЙ БАННЕР ===== */
+    .hero {
+      background: linear-gradient(135deg, #1a1a2e 0%, #2d2d4a 100%);
+      color: #ffffff;
+      padding: 60px 0;
+      margin: 0 0 40px 0;
+      border-radius: 0 0 24px 24px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .hero h1 {
+      font-size: 42px;
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 16px;
+      letter-spacing: -1px;
+    }
+
+    .hero h1 span {
+      color: #f5a623;
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: #b0b0c8;
+      margin-bottom: 24px;
+      max-width: 440px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 32px;
+      border: none;
+      border-radius: 50px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.25s;
+      text-decoration: none;
+      font-family: inherit;
+    }
+
+    .btn-yellow {
+      background-color: #f5a623;
+      color: #1a1a2e;
+    }
+
+    .btn-yellow:hover {
+      background-color: #e09515;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(245, 166, 35, 0.35);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: #ffffff;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .btn-outline:hover {
+      border-color: #ffffff;
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .hero-image {
+      background: linear-gradient(135deg, #3d3d6b, #1a1a2e);
+      border-radius: 16px;
+      padding: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 260px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .hero-image img {
+      border-radius: 12px;
+      max-height: 300px;
+      width: auto;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+    }
+
+    /* ===== ЗАГОЛОВКИ СЕКЦИЙ ===== */
+    .section-title {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      letter-spacing: -0.3px;
+    }
+
+    .section-subtitle {
+      color: #6c6c80;
+      margin-bottom: 28px;
+      font-size: 16px;
+    }
+
+    /* ===== КАТЕГОРИИ (ТАБЫ) ===== */
+    .categories {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 32px;
+    }
+
+    .category-btn {
+      padding: 10px 24px;
+      border: 2px solid #e8ecf0;
+      border-radius: 50px;
+      background: #ffffff;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: inherit;
+    }
+
+    .category-btn:hover {
+      border-color: #c0c4cc;
+    }
+
+    .category-btn.active {
+      background: #1a1a2e;
+      color: #ffffff;
+      border-color: #1a1a2e;
+    }
+
+    /* ===== СЕТКА КНИГ ===== */
+    .books-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 24px;
+      margin-bottom: 48px;
+    }
+
+    .book-card {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 16px 16px 20px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+      transition: all 0.25s;
+      text-align: center;
+      border: 1px solid #f0f0f4;
+    }
+
+    .book-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+    }
+
+    .book-cover {
+      width: 100%;
+      aspect-ratio: 2 / 3;
+      background: #f0f0f4;
+      border-radius: 8px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+      color: #b0b0c4;
+      background: linear-gradient(145deg, #f5f5f9, #e8e8ee);
+    }
+
+    .book-cover img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .book-title {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 4px;
+      line-height: 1.3;
+    }
+
+    .book-author {
+      font-size: 13px;
+      color: #6c6c80;
+      margin-bottom: 8px;
+    }
+
+    .book-price {
+      font-size: 18px;
+      font-weight: 700;
+      color: #1a1a2e;
+      margin-bottom: 10px;
+    }
+
+    .btn-add {
+      padding: 8px 20px;
+      border: none;
+      border-radius: 50px;
+      background: #1a1a2e;
+      color: #ffffff;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: inherit;
+      width: 100%;
+    }
+
+    .btn-add:hover {
+      background: #f5a623;
+      color: #1a1a2e;
+    }
+
+    /* ===== БАННЕР-ПРОМО ===== */
+    .promo-banner {
+      background: linear-gradient(135deg, #fef7e9, #fdf0d5);
+      border-radius: 16px;
+      padding: 40px 32px;
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 30px;
+      align-items: center;
+      margin-bottom: 48px;
+      border: 1px solid #f5e6c8;
+    }
+
+    .promo-banner h2 {
+      font-size: 26px;
+      font-weight: 700;
+      color: #1a1a2e;
+    }
+
+    .promo-banner h2 span {
+      color: #b87a1a;
+    }
+
+    .promo-banner p {
+      color: #5a5a6a;
+      font-size: 15px;
+      margin: 6px 0 16px 0;
+    }
+
+    .promo-banner .btn-yellow {
+      background: #f5a623;
+      color: #1a1a2e;
+      padding: 12px 28px;
+    }
+
+    .promo-banner .btn-yellow:hover {
+      background: #e09515;
+    }
+
+    .promo-banner .bonus-number {
+      font-size: 48px;
+      font-weight: 800;
+      color: #b87a1a;
+      line-height: 1;
+      text-align: right;
+    }
+
+    .promo-banner .bonus-label {
+      font-size: 16px;
+      color: #5a5a6a;
+      text-align: right;
+    }
+
+    /* ===== ПОДВАЛ ===== */
+    .footer {
+      background: #1a1a2e;
+      color: #b0b0c8;
+      padding: 40px 0 32px;
+      border-radius: 16px 16px 0 0;
+      margin-top: 16px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 30px;
+    }
+
+    .footer h4 {
+      color: #ffffff;
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .footer p,
+    .footer li {
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .footer ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer ul li {
+      cursor: default;
+    }
+
+    .footer .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      margin-top: 30px;
+      padding-top: 20px;
+      text-align: center;
+      font-size: 13px;
+      color: #6c6c88;
+    }
+
+    /* ===== АДАПТИВ ===== */
+    @media (max-width: 768px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .hero h1 {
+        font-size: 30px;
+      }
+
+      .hero p {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-buttons {
+        justify-content: center;
+      }
+
+      .hero-image {
+        min-height: 180px;
+        order: -1;
+      }
+
+      .promo-banner {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .promo-banner .bonus-number,
+      .promo-banner .bonus-label {
+        text-align: center;
+      }
+
+      .header-inner {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+      }
+
+      .header-actions {
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .logo {
+        justify-content: center;
+      }
+
+      .books-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 16px;
+      }
+
+      .section-title {
+        font-size: 22px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 {
+        font-size: 24px;
+      }
+
+      .btn {
+        padding: 10px 20px;
+        font-size: 14px;
+      }
+
+      .book-card {
+        padding: 12px;
+      }
+
+      .book-title {
+        font-size: 13px;
+      }
+    }
+
+    /* ===== КНОПКА "БЕЗ ДЕЙСТВИЯ" (заглушка) ===== */
+    .btn-no-action {
+      cursor: default;
+      opacity: 0.7;
+    }
+  </style>
 </head>
 <body>
-<!-- START OF ALTCRAFT PIXEL CODE !-->
-      <script type="text/javascript">
-      !function(){var e={url:"https://pxl.demo.altcraft.com/pixel?k=4jtMs0znxJAkIcDrhbTgBtoHDtx7ulICbmjAHAFAb41axZT5IQLfp91HVEW46hhg&s=jyid2qbRf8U%3D",goals:"pageView",value:parseFloat("0"),timeout:parseInt("5000"),after_scroll:JSON.parse("false"),auto_load:JSON.parse("true")},o=function(o,t,n,a){var d=[].concat(o).map(function(e){return encodeURIComponent(e)}).join(","),c=encodeURIComponent(String(t||0)),i=encodeURIComponent(n.matching_mode||""),r=encodeURIComponent(n.db_id||0),u=encodeURIComponent(JSON.stringify(n.match||{})),l=encodeURIComponent(JSON.stringify(n.update||{}));setTimeout(function(){(new Image).src=[e.url,"goals="+d,"value="+c,"db_id="+r,"mmode="+i,"match="+u,"update="+l].join("&")},a)},t=!1,n=function(){t||(t=!0,e.after_scroll?document.addEventListener("scroll",function(){(window.pageYOffset||document.documentElement.scrollTop>0)&&o(e.goals,e.value,{},e.timeout)},{once: true}):e.auto_load&&o(e.goals,e.value,{},e.timeout))};"complete"===document.readyState||"interactive"===document.readyState?n():window.addEventListener("load",n);window.ak_pixel_push=function(e,t,n,a,d,c){var i=[];Array.isArray(e)?i=e:i[0]=e,o(i,t,{match:n,update:a,matching_mode:d,db_id:c},0)}}();
-      </script>
-      <!-- END OF ALTCRAFT PIXEL CODE !-->
 
-       
-<button id="init_sub">Подписаться на уведомления</button> // Кнопка подписки
+  <!-- ====== ШАПКА ====== -->
+  <header class="header">
+    <div class="container header-inner">
+      <div class="logo">
+        <span class="logo-icon">📚</span>
+        <span class="logo-text">Book<span>Store</span></span>
+      </div>
+      <div class="header-actions">
+        <button class="header-btn">Каталог</button>
+        <button class="header-btn">Избранное</button>
+        <button class="header-btn primary">Корзина (0)</button>
+      </div>
+    </div>
+  </header>
 
-<script>
-	document.getElementById('init_sub').addEventListener('click', function() { // По клику на кнопку..
-	try {
-		var akPush = new AKPush();
-		akPush.initSubscription() // Покажет форму для подписки
-		}
-	catch (e) {
-		console.log(e); // В случае ошибки выведет сообщение в консоль
-		}
-	});
-</script>
+  <!-- ====== ГЛАВНЫЙ БАННЕР ====== -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <h1>Книги, которые <span>вдохновляют</span></h1>
+        <p>Тысячи книг на любой вкус. Доставка по всей стране. Читайте больше, платите меньше.</p>
+        <div class="hero-buttons">
+          <button class="btn btn-yellow">📖 В каталог</button>
+          <button class="btn btn-outline">🔥 Новинки</button>
+        </div>
+      </div>
+      <div class="hero-image">
+        <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=400&h=300&fit=crop&crop=center" alt="Стопка книг" />
+      </div>
+    </div>
+  </section>
 
+  <!-- ====== КАТАЛОГ ====== -->
+  <section class="container">
+    <h2 class="section-title">Популярные книги</h2>
+    <p class="section-subtitle">Выбор наших читателей в этом месяце</p>
 
-    <p>Урок 5. Тестирование браузерных пушей</p>
+    <!-- Фильтры (табы) -->
+    <div class="categories">
+      <button class="category-btn active">Все</button>
+      <button class="category-btn">Художественная</button>
+      <button class="category-btn">Бизнес</button>
+      <button class="category-btn">Наука</button>
+      <button class="category-btn">Детская</button>
+    </div>
 
+    <!-- Сетка книг -->
+    <div class="books-grid">
 
-            <script src=https://pxl.demo.altcraft.com/form/js/embed_v1.js></script>
-<iframe src="https://pxl.demo.altcraft.com/form?form=8NJf1mCeuRv75dBenr42Gi3eSs48YMp6WyFFYzKo3gcZbpmtz3HtVsATr9Dyba2GZzSRd87z5ftNj1pBJm3BzLye&iframe=1" frameborder="0" name="ak-form-8NJf1mCeuRv75dBenr42Gi3eSs48YMp6WyFFYzKo3gcZbpmtz3HtVsATr9Dyba2GZzSRd87z5ftNj1pBJm3BzLye" class="ak-form" width="100%" sandbox="allow-same-origin allow-forms allow-scripts allow-popups allow-popups-to-escape-sandbox allow-top-navigation"></iframe>
+      <!-- Книга 1 -->
+      <div class="book-card">
+        <div class="book-cover">
+          <img src="https://fakeimg.pl/300x450/1a1a2e/ffffff?text=📘&font=lato" alt="Обложка книги" />
+        </div>
+        <div class="book-title">Тени прошлого</div>
+        <div class="book-author">Екатерина Воронцова</div>
+        <div class="book-price">590 ₽</div>
+        <button class="btn-add">В корзину</button>
+      </div>
 
+      <!-- Книга 2 -->
+      <div class="book-card">
+        <div class="book-cover">
+          <img src="https://fakeimg.pl/300x450/2d2d4a/ffffff?text=📗&font=lato" alt="Обложка книги" />
+        </div>
+        <div class="book-title">Искусство системного мышления</div>
+        <div class="book-author">Дмитрий Чернышев</div>
+        <div class="book-price">850 ₽</div>
+        <button class="btn-add">В корзину</button>
+      </div>
 
-            <script src=https://pxl.demo.altcraft.com/form/js/embed_v1.js></script>
-<iframe src="https://pxl.demo.altcraft.com/form?form=951ReZjS8ZmMYkwTX1vNbXZ8nF56XZcRwKY1Jyy3485Hm37yT52oGsBL2WRRWVc9hJ4S7bqG8f4y8g7c9Z6wLn9R&iframe=1" frameborder="0" name="ak-form-951ReZjS8ZmMYkwTX1vNbXZ8nF56XZcRwKY1Jyy3485Hm37yT52oGsBL2WRRWVc9hJ4S7bqG8f4y8g7c9Z6wLn9R" class="ak-form" width="100%" sandbox="allow-same-origin allow-forms allow-scripts allow-popups allow-popups-to-escape-sandbox allow-top-navigation"></iframe>
+      <!-- Книга 3 -->
+      <div class="book-card">
+        <div class="book-cover">
+          <img src="https://fakeimg.pl/300x450/3d3d6b/ffffff?text=📙&font=lato" alt="Обложка книги" />
+        </div>
+        <div class="book-title">Атлант расправил плечи</div>
+        <div class="book-author">Айн Рэнд</div>
+        <div class="book-price">1 200 ₽</div>
+        <button class="btn-add">В корзину</button>
+      </div>
 
+      <!-- Книга 4 -->
+      <div class="book-card">
+        <div class="book-cover">
+          <img src="https://fakeimg.pl/300x450/4a4a7a/ffffff?text=📕&font=lato" alt="Обложка книги" />
+        </div>
+        <div class="book-title">Маленький принц</div>
+        <div class="book-author">Антуан де Сент-Экзюпери</div>
+        <div class="book-price">350 ₽</div>
+        <button class="btn-add">В корзину</button>
+      </div>
 
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Урок 9. Размещение пикселя на сайте через Менеджер тегов</title>
-</head>
-<body>
+      <!-- Книга 5 -->
+      <div class="book-card">
+        <div class="book-cover">
+          <img src="https://fakeimg.pl/300x450/1a2e2e/ffffff?text=📓&font=lato" alt="Обложка книги" />
+        </div>
+        <div class="book-title">Думай медленно... решай быстро</div>
+        <div class="book-author">Даниэль Канеман</div>
+        <div class="book-price">980 ₽</div>
+        <button class="btn-add">В корзину</button>
+      </div>
 
-    <p>Страница 1</p>
-    <button id="btn_1">Кнопка 1</button>
-    <button id="btn_2">Кнопка 2</button>
+      <!-- Книга 6 -->
+      <div class="book-card">
+        <div class="book-cover">
+          <img src="https://fakeimg.pl/300x450/2e1a2e/ffffff?text=📒&font=lato" alt="Обложка книги" />
+        </div>
+        <div class="book-title">Гарри Поттер и философский камень</div>
+        <div class="book-author">Дж.К. Роулинг</div>
+        <div class="book-price">650 ₽</div>
+        <button class="btn-add">В корзину</button>
+      </div>
 
-	<!-- Кнопка с эффектом свечения -->
-<button class="neon-button" onclick="alert('Привет! Спасибо, что нажали!')">
-  ✨ Нажми меня
-</button>
+    </div>
+  </section>
 
-<!-- Стили для кнопки (можно вставить в <head> или <style> внутри body) -->
-<style>
-  .neon-button {
-    padding: 15px 40px;
-    font-size: 20px;
-    font-weight: bold;
-    color: #fff;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    box-shadow: 0 0 20px rgba(102, 126, 234, 0.5);
-    transition: all 0.3s ease;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-family: 'Arial', sans-serif;
-  }
+  <!-- ====== ПРОМО-БАННЕР ====== -->
+  <section class="container">
+    <div class="promo-banner">
+      <div>
+        <h2>Расскажите о себе и получите <span>200 бонусов</span></h2>
+        <p>Заполните анкету о ваших любимых жанрах — и мы будем присылать только те книги, которые вам точно понравятся.</p>
+        <button class="btn btn-yellow">🎁 Заполнить анкету</button>
+      </div>
+      <div>
+        <div class="bonus-number">200</div>
+        <div class="bonus-label">бонусов на счёт</div>
+      </div>
+    </div>
+  </section>
 
-  .neon-button:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 40px rgba(102, 126, 234, 0.8);
-    background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
-  }
-
-  .neon-button:active {
-    transform: scale(0.95);
-  }
-</style>
+  <!-- ====== ПОДВАЛ ====== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h4>📚 BookStore</h4>
+          <p>Книги, которые вдохновляют.<br />Москва, ул. Читательская, 10</p>
+        </div>
+        <div>
+          <h4>Каталог</h4>
+          <ul>
+            <li>Художественная</li>
+            <li>Бизнес-литература</li>
+            <li>Научно-популярная</li>
+            <li>Детская</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Покупателям</h4>
+          <ul>
+            <li>Доставка и оплата</li>
+            <li>Возврат</li>
+            <li>Бонусная программа</li>
+            <li>Контакты</li>
+          </ul>
+        </div>
+        <div>
+          <h4>О нас</h4>
+          <ul>
+            <li>О магазине</li>
+            <li>Вакансии</li>
+            <li>Партнёрам</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        © 2026 BookStore. Все права защищены.
+      </div>
+    </div>
+  </footer>
 
 </body>
 </html>
-	
 </body>
 </html>

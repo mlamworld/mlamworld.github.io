@@ -3,337 +3,211 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Y2K SHOP ✧ официальный сайт</title>
+<title>Y2K SHOP</title>
 <style>
-  /* ===== ГЛОБАЛЬНЫЕ СТИЛИ Y2K ===== */
-  :root{
-    --pink:#ff5cc8;
-    --lime:#b6ff00;
-    --cyan:#00e5ff;
-    --purple:#a45cff;
-    --dark:#12001f;
-    --panel:rgba(255,255,255,.08);
-  }
-  *{margin:0;padding:0;box-sizing:border-box;}
-  body{
-    font-family:"Comic Sans MS","Trebuchet MS",Verdana,sans-serif;
-    color:#fff;
-    background:
-      radial-gradient(circle at 15% 10%, #ff5cc8 0%, transparent 40%),
-      radial-gradient(circle at 85% 20%, #00e5ff 0%, transparent 40%),
-      radial-gradient(circle at 50% 90%, #a45cff 0%, transparent 45%),
-      linear-gradient(135deg,#12001f,#2b0a45 60%,#12001f);
-    background-attachment:fixed;
-    min-height:100vh;
-    overflow-x:hidden;
-  }
-  body::before{
-    content:"";
-    position:fixed;inset:0;
-    background-image:repeating-linear-gradient(0deg, rgba(255,255,255,.04) 0 1px, transparent 1px 3px);
-    pointer-events:none;z-index:1;
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: "Comic Sans MS", Verdana, sans-serif;
+    background: linear-gradient(135deg, #12001f, #2b0a45 50%, #12001f);
+    color: #fff;
+    min-height: 100vh;
   }
 
-  /* ===== ХЕДЕР ===== */
-  header{position:relative;z-index:2;text-align:center;padding:40px 20px 25px;}
-  .logo{
-    display:inline-block;font-size:clamp(38px,9vw,90px);font-weight:900;letter-spacing:4px;
-    background:linear-gradient(90deg,var(--pink),var(--cyan),var(--lime),var(--purple),var(--pink));
-    background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;
-    animation:shine 6s linear infinite;
-    text-shadow:0 0 30px rgba(255,92,200,.35);
+  header {
+    text-align: center;
+    padding: 40px 20px;
   }
-  @keyframes shine{0%{background-position:0% 50%;}100%{background-position:300% 50%;}}
-  .tagline{margin-top:6px;font-size:15px;letter-spacing:2px;color:var(--lime);text-shadow:0 0 8px var(--lime);}
-  .divider{height:6px;width:180px;margin:18px auto 0;border-radius:6px;
-    background:linear-gradient(90deg,var(--cyan),var(--pink),var(--lime));box-shadow:0 0 18px var(--pink);}
 
-  /* ===== КАТЕГОРИИ ===== */
-  .categories{position:relative;z-index:2;display:flex;flex-wrap:wrap;gap:10px;justify-content:center;padding:18px 16px 6px;}
-  .cat-btn{
-    cursor:pointer;border:2px solid var(--cyan);background:rgba(0,229,255,.08);color:#fff;
-    padding:9px 18px;border-radius:20px;font-size:14px;font-weight:bold;letter-spacing:1px;
-    transition:.25s;backdrop-filter:blur(6px);
+  .logo {
+    font-size: 56px;
+    font-weight: 900;
+    letter-spacing: 4px;
+    background: linear-gradient(90deg, #ff5cc8, #00e5ff, #b6ff00, #ff5cc8);
+    background-size: 300% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: shine 5s linear infinite;
   }
-  .cat-btn:hover{background:var(--cyan);color:#12001f;box-shadow:0 0 18px var(--cyan);transform:translateY(-2px);}
-  .cat-btn.active{background:var(--pink);border-color:var(--pink);color:#12001f;box-shadow:0 0 20px var(--pink);}
 
-  /* ===== ТОВАРЫ ===== */
-  main{position:relative;z-index:2;padding:20px 20px 60px;}
-  .grid{max-width:1200px;margin:0 auto;display:grid;
-    grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:22px;}
+  @keyframes shine {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 300% 50%; }
+  }
 
-  /* Базовый стиль карточки — можно переопределить через CSS-переменные на .card */
-  .card{
-    background:var(--panel);border:2px solid rgba(255,255,255,.18);border-radius:18px;
-    overflow:hidden;backdrop-filter:blur(10px);transition:.3s;display:flex;flex-direction:column;
+  .tagline {
+    color: #b6ff00;
+    letter-spacing: 3px;
+    margin-top: 8px;
+    font-size: 14px;
   }
-  .card:hover{
-    transform:translateY(-6px) scale(1.02);
-    border-color:var(--card-border, var(--pink));
-    box-shadow:0 0 28px rgba(255,92,200,.55);
-  }
-  .card .img-wrap{
-    position:relative;aspect-ratio:var(--card-img-ratio, 1/1);
-    background:#1c0330;overflow:hidden;cursor:pointer;
-  }
-  .card img{width:100%;height:100%;object-fit:cover;transition:.4s;}
-  .card:hover img{transform:scale(1.08);}
-  .badge{
-    position:absolute;top:10px;left:10px;background:var(--lime);color:#12001f;
-    font-size:11px;font-weight:900;padding:4px 10px;border-radius:12px;letter-spacing:1px;
-  }
-  .card-body{padding:14px 14px 16px;display:flex;flex-direction:column;gap:8px;flex:1;}
-  .card-cat{font-size:11px;color:var(--cyan);letter-spacing:1px;text-transform:uppercase;}
-  .card-name{
-    font-size:var(--card-name-size, 15px);
-    font-weight:var(--card-name-weight, bold);
-    font-family:var(--card-name-font, inherit);
-    line-height:1.3;color:#fff;cursor:pointer;
-  }
-  .card-price{
-    font-size:var(--card-price-size, 20px);
-    font-weight:900;color:var(--lime);
-    text-shadow:0 0 10px rgba(182,255,0,.5);margin-top:auto;
-  }
-  .btn-cart{
-    cursor:pointer;display:block;width:100%;text-align:center;text-decoration:none;
-    padding:12px;border:none;border-radius:12px;font-family:inherit;
-    font-size:14px;font-weight:900;letter-spacing:1.5px;color:#12001f;
-    background:linear-gradient(90deg,var(--pink),var(--purple),var(--cyan));
-    background-size:200% 100%;transition:.3s;
-    box-shadow:0 0 14px rgba(164,92,255,.6);
-  }
-  .btn-cart:hover{background-position:100% 0;box-shadow:0 0 24px var(--pink);transform:scale(1.03);}
 
-  .status{text-align:center;color:var(--lime);font-size:16px;letter-spacing:1px;padding:30px;}
+  .grid {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 24px;
+  }
 
-  /* ===== ФУТЕР ===== */
-  footer{
-    position:relative;z-index:2;margin-top:30px;padding:34px 20px;text-align:center;
-    background:rgba(0,0,0,.45);border-top:2px solid rgba(255,92,200,.5);
-    box-shadow:0 -6px 30px rgba(255,92,200,.25);
+  .card {
+    background: rgba(255, 255, 255, 0.06);
+    border: 2px solid rgba(255, 92, 200, 0.4);
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: 0.3s;
   }
-  footer h3{font-size:20px;letter-spacing:3px;color:var(--pink);text-shadow:0 0 12px var(--pink);margin-bottom:14px;}
-  .contacts{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-bottom:16px;}
-  .contacts a,.contacts span{
-    color:#fff;text-decoration:none;font-size:14px;padding:8px 16px;
-    border:1px solid rgba(0,229,255,.6);border-radius:14px;transition:.25s;
-  }
-  .contacts a:hover{background:var(--cyan);color:#12001f;box-shadow:0 0 16px var(--cyan);}
-  .copy{font-size:12px;color:rgba(255,255,255,.55);letter-spacing:1px;}
 
-  .marquee{
-    position:relative;z-index:2;overflow:hidden;white-space:nowrap;
-    background:linear-gradient(90deg,var(--purple),var(--pink),var(--cyan));
-    padding:8px 0;font-weight:900;letter-spacing:3px;color:#12001f;font-size:13px;
+  .card:hover {
+    border-color: #ff5cc8;
+    box-shadow: 0 0 24px rgba(255, 92, 200, 0.6);
+    transform: translateY(-4px);
   }
-  .marquee span{display:inline-block;padding-left:100%;animation:scroll 18s linear infinite;}
-  @keyframes scroll{0%{transform:translateX(0);}100%{transform:translateX(-100%);}}
+
+  .card img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    display: block;
+    background: #1c0330;
+  }
+
+  .card-body {
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex: 1;
+  }
+
+  .card-name {
+    font-size: 15px;
+    font-weight: bold;
+    line-height: 1.3;
+  }
+
+  .card-price {
+    font-size: 22px;
+    font-weight: 900;
+    color: #b6ff00;
+    margin-top: auto;
+  }
+
+  .btn-cart {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    padding: 12px;
+    border-radius: 10px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    color: #12001f;
+    background: linear-gradient(90deg, #ff5cc8, #a45cff, #00e5ff);
+    transition: 0.3s;
+  }
+
+  .btn-cart:hover {
+    box-shadow: 0 0 20px #ff5cc8;
+    transform: scale(1.03);
+  }
+
+  footer {
+    text-align: center;
+    padding: 40px 20px;
+    margin-top: 40px;
+    border-top: 2px solid rgba(255, 92, 200, 0.4);
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 14px;
+  }
+
+  footer a {
+    color: #00e5ff;
+    text-decoration: none;
+  }
+
+  footer a:hover {
+    text-decoration: underline;
+  }
 </style>
 </head>
 <body>
 
-<div class="marquee"><span>★ Y2K SHOP ★ НОВАЯ КОЛЛЕКЦИЯ ★ МИНИ-ЮБКИ ★ КАРГО ★ ТОПЫ ★ ПЛАТФОРМЫ ★ СКИДКИ ★</span></div>
-
 <header>
   <div class="logo">Y2K SHOP</div>
-  <div class="tagline">✧ официальный магазин ✧</div>
-  <div class="divider"></div>
+  <div class="tagline">✧ ОФИЦИАЛЬНЫЙ МАГАЗИН ✧</div>
 </header>
 
-<div class="categories" id="categories"></div>
-
-<main>
-  <div class="status" id="status">Загружаем товары...</div>
-  <div class="grid" id="grid"></div>
-</main>
+<div class="grid" id="grid"></div>
 
 <footer>
-  <h3>✦ КОНТАКТЫ ✦</h3>
-  <div class="contacts">
-    <a href="mailto:hello@y2kshop.ru">✉ hello@y2kshop.ru</a>
-    <a href="tel:+79991234567">☎ +7 (999) 123-45-67</a>
-    <span>✧ Москва, ул. Неоновая, 2000</span>
-    <a href="https://altcraft.com/ru" target="_blank" rel="noopener">⚡ altcraft.com/ru</a>
-  </div>
-  <div class="copy">© 2026 Y2K SHOP · все права защищены · сделано с 💜 в стиле 2000-х</div>
+  <p>✉ hello@y2kshop.ru &nbsp;·&nbsp; ☎ +7 (999) 123-45-67</p>
+  <p style="margin-top: 8px;">© 2026 Y2K SHOP · <a href="https://altcraft.com/ru" target="_blank">altcraft.com/ru</a></p>
 </footer>
 
 <script>
-/* ============================================================
-   КОНФИГ
-   ============================================================ */
-const FEED_URL = "diana1_feed.yml";        // файл лежит рядом с index.html
-const CART_REDIRECT = "https://altcraft.com/ru";
+  // ============================================
+  // ТОВАРЫ ИЗ ФИДА — вшиты напрямую
+  // ============================================
+  const CART_URL = "https://altcraft.com/ru";
 
-/* ============================================================
-   ЗАГРУЗКА И ПАРСИНГ XML-ФИДА
-   ============================================================ */
-async function loadFeed(){
-  const statusEl = document.getElementById("status");
-  try{
-    const res = await fetch(FEED_URL + "?t=" + Date.now());
-    if(!res.ok){
-      if(res.status === 404) throw new Error("Файл фида не найден. Загрузите diana1_feed.yml в репозиторий GitHub Pages.");
-      throw new Error("HTTP " + res.status);
+  const products = [
+    {
+      name: "Юбка мини Y2K",
+      price: 2990,
+      image: "https://img-edg.joomcdn.net/a6f1c3f2bc334503ef96c5dfe97fc684400d7574_original.jpeg",
+      url: "https://www.joom.ru/ru/products/666960bc477400015916813b"
+    },
+    {
+      name: "Женские брюки карго Y2K",
+      price: 3490,
+      image: "https://img-edg.joomcdn.net/9a339a782358ffd917203f1e0004030708beda77_original.jpeg",
+      url: "https://www.joom.ru/ru/products/6461d92f4636ab01307ad515"
+    },
+    {
+      name: "Женский топ Y2K",
+      price: 1990,
+      image: "https://img-edg.joomcdn.net/2d3ee793d7819192af3805714fecac4c29ad85ef_original.jpeg",
+      url: "https://www.joom.ru/ru/products/64f04801324349013af0a2f5"
+    },
+    {
+      name: "Женские туфли на платформе Y2K",
+      price: 3990,
+      image: "https://img-edg.joomcdn.net/9e0868b2de37001bfa1ae6c558a135c2215d5a71_original.jpeg",
+      url: "https://www.joom.ru/ru/products/65d71a782399f201227a423d"
     }
-    const text = await res.text();
-    const xml  = new DOMParser().parseFromString(text, "application/xml");
+  ];
 
-    if(xml.querySelector("parsererror")) throw new Error("Ошибка парсинга XML. Проверьте структуру фида.");
-
-    // --- категории ---
-    const categories = {};
-    xml.querySelectorAll("categories > category").forEach(c=>{
-      categories[c.getAttribute("id")] = c.textContent.trim();
-    });
-
-    // --- товары ---
-    const offers = [];
-    xml.querySelectorAll("offers > offer").forEach(o=>{
-      const get = tag => o.querySelector(tag)?.textContent.trim() || "";
-      const params = {};
-      o.querySelectorAll("param").forEach(p=>{
-        params[p.getAttribute("name")] = p.textContent.trim();
-      });
-      offers.push({
-        id:       o.getAttribute("id"),
-        name:     get("name"),
-        price:    get("price"),
-        currency: get("currencyId"),
-        categoryId: get("categoryId"),
-        picture:  get("picture"),
-        url:      get("url"),
-        vendor:   get("vendor"),
-        description: get("description"),
-        available: o.getAttribute("available") !== "false",
-        params
-      });
-    });
-
-    if(!offers.length) throw new Error("В фиде нет товаров");
-    renderCategories(categories, offers);
-    renderProducts(offers, categories);
-    statusEl.style.display = "none";
-  }catch(err){
-    console.error(err);
-    statusEl.textContent = "⚠ " + err.message;
-    statusEl.style.color = "#ff5cc8";
-  }
-}
-
-/* ============================================================
-   КАТЕГОРИИ
-   ============================================================ */
-let ALL_OFFERS = [];
-let CATEGORIES = {};
-
-function renderCategories(categories, offers){
-  CATEGORIES = categories;
-  ALL_OFFERS = offers;
-  const box = document.getElementById("categories");
-  box.innerHTML = "";
-
-  const btnAll = document.createElement("button");
-  btnAll.className = "cat-btn active";
-  btnAll.textContent = "ВСЕ ТОВАРЫ";
-  btnAll.dataset.cat = "all";
-  box.appendChild(btnAll);
-
-  Object.entries(categories).forEach(([id, name])=>{
-    const b = document.createElement("button");
-    b.className = "cat-btn";
-    b.textContent = name.toUpperCase();
-    b.dataset.cat = id;
-    box.appendChild(b);
-  });
-
-  box.querySelectorAll(".cat-btn").forEach(b=>{
-    b.addEventListener("click", ()=>{
-      box.querySelectorAll(".cat-btn").forEach(x=>x.classList.remove("active"));
-      b.classList.add("active");
-      const cat = b.dataset.cat;
-      const filtered = cat === "all" ? ALL_OFFERS : ALL_OFFERS.filter(o=>o.categoryId === cat);
-      renderProducts(filtered, CATEGORIES);
-    });
-  });
-}
-
-/* ============================================================
-   ТОВАРЫ
-   ============================================================ */
-function renderProducts(offers, categories){
+  // ============================================
+  // ОТРИСОВКА
+  // ============================================
   const grid = document.getElementById("grid");
-  grid.innerHTML = "";
 
-  if(!offers.length){
-    grid.innerHTML = '<div class="status">Товаров в этой категории нет 😢</div>';
-    return;
-  }
-
-  offers.forEach(o=>{
+  products.forEach(p => {
     const card = document.createElement("div");
     card.className = "card";
 
-    // Применяем параметры стилизации из фида (если есть)
-    const p = o.params || {};
-    if(p["card_img_ratio"])   card.style.setProperty("--card-img-ratio", p["card_img_ratio"]);
-    if(p["card_border"])      card.style.setProperty("--card-border", p["card_border"]);
-    if(p["card_name_size"])   card.style.setProperty("--card-name-size", p["card_name_size"]);
-    if(p["card_name_weight"]) card.style.setProperty("--card-name-weight", p["card_name_weight"]);
-    if(p["card_name_font"])   card.style.setProperty("--card-name-font", p["card_name_font"]);
-    if(p["card_price_size"])  card.style.setProperty("--card-price-size", p["card_price_size"]);
-
-    const catName = categories[o.categoryId] || "Товары";
-    const fallbackImg = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><rect width='300' height='300' fill='%231c0330'/><text x='50%' y='50%' fill='%23ff5cc8' font-size='20' text-anchor='middle'>Y2K SHOP</text></svg>";
-
     card.innerHTML = `
-      <div class="img-wrap">
-        <span class="badge">${o.available ? "В НАЛИЧИИ" : "НЕТ"}</span>
-        <img src="${escapeAttr(o.picture)}" alt="${escapeAttr(o.name)}" loading="lazy"
-             onerror="this.src='${fallbackImg}'">
-      </div>
+      <img src="${p.image}" alt="${p.name}" onerror="this.style.background='#1c0330'">
       <div class="card-body">
-        <div class="card-cat">${escapeHtml(catName)}</div>
-        <div class="card-name">${escapeHtml(o.name)}</div>
-        <div class="card-price">${formatPrice(o.price)} ₽</div>
-        <a class="btn-cart" href="${CART_REDIRECT}" target="_blank" rel="noopener">🛒 ДОБАВИТЬ В КОРЗИНУ</a>
+        <div class="card-name">${p.name}</div>
+        <div class="card-price">${p.price.toLocaleString("ru-RU")} ₽</div>
+        <a class="btn-cart" href="${CART_URL}" target="_blank" rel="noopener">🛒 В КОРЗИНУ</a>
       </div>
     `;
 
-    // Клик по картинке/названию → страница товара
-    card.querySelector(".img-wrap").addEventListener("click", ()=> window.open(o.url, "_blank", "noopener"));
-    card.querySelector(".card-name").addEventListener("click", ()=> window.open(o.url, "_blank", "noopener"));
+    // Клик по картинке → страница товара
+    card.querySelector("img").style.cursor = "pointer";
+    card.querySelector("img").addEventListener("click", () => {
+      window.open(p.url, "_blank", "noopener");
+    });
 
     grid.appendChild(card);
   });
-}
-
-/* ============================================================
-   УТИЛИТЫ
-   ============================================================ */
-function formatPrice(p){
-  const n = Number(p);
-  return isNaN(n) ? p : n.toLocaleString("ru-RU");
-}
-function escapeHtml(s){
-  return String(s).replace(/[&<>"']/g, m=>({
-    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
-  }[m]));
-}
-function escapeAttr(s){ return escapeHtml(s); }
-
-/* ============================================================
-   ПРОКСИ-ВАРИАНТ ДЛЯ ССЫЛОК (если нужно)
-   ------------------------------------------------------------
-   Чтобы картинка и ссылка шли через ваш домен, замените:
-     src="${escapeAttr(o.picture)}"  →  src="/img/${o.id}"
-     window.open(o.url, ...)         →  window.open("/product/${o.id}", ...)
-   и настройте на сервере редирект/прокси.
-   ============================================================ */
-
-loadFeed();
 </script>
+
 </body>
 </html>

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Y2K SHOP ✧ официальный сайт</title>
 <style>
-  /* ===== Y2K СТИЛЬ ===== */
+  /* ===== ГЛОБАЛЬНЫЕ СТИЛИ Y2K ===== */
   :root{
     --pink:#ff5cc8;
     --lime:#b6ff00;
@@ -30,224 +30,106 @@
   body::before{
     content:"";
     position:fixed;inset:0;
-    background-image:
-      repeating-linear-gradient(0deg, rgba(255,255,255,.04) 0 1px, transparent 1px 3px);
-    pointer-events:none;
-    z-index:1;
+    background-image:repeating-linear-gradient(0deg, rgba(255,255,255,.04) 0 1px, transparent 1px 3px);
+    pointer-events:none;z-index:1;
   }
 
   /* ===== ХЕДЕР ===== */
-  header{
-    position:relative;z-index:2;
-    text-align:center;
-    padding:40px 20px 25px;
-  }
+  header{position:relative;z-index:2;text-align:center;padding:40px 20px 25px;}
   .logo{
-    display:inline-block;
-    font-size:clamp(38px,9vw,90px);
-    font-weight:900;
-    letter-spacing:4px;
+    display:inline-block;font-size:clamp(38px,9vw,90px);font-weight:900;letter-spacing:4px;
     background:linear-gradient(90deg,var(--pink),var(--cyan),var(--lime),var(--purple),var(--pink));
-    background-size:300% 100%;
-    -webkit-background-clip:text;
-    background-clip:text;
-    color:transparent;
+    background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;
     animation:shine 6s linear infinite;
     text-shadow:0 0 30px rgba(255,92,200,.35);
   }
-  @keyframes shine{
-    0%{background-position:0% 50%;}
-    100%{background-position:300% 50%;}
-  }
-  .tagline{
-    margin-top:6px;
-    font-size:15px;
-    letter-spacing:2px;
-    color:var(--lime);
-    text-shadow:0 0 8px var(--lime);
-  }
-  .divider{
-    height:6px;width:180px;margin:18px auto 0;
-    border-radius:6px;
-    background:linear-gradient(90deg,var(--cyan),var(--pink),var(--lime));
-    box-shadow:0 0 18px var(--pink);
-  }
+  @keyframes shine{0%{background-position:0% 50%;}100%{background-position:300% 50%;}}
+  .tagline{margin-top:6px;font-size:15px;letter-spacing:2px;color:var(--lime);text-shadow:0 0 8px var(--lime);}
+  .divider{height:6px;width:180px;margin:18px auto 0;border-radius:6px;
+    background:linear-gradient(90deg,var(--cyan),var(--pink),var(--lime));box-shadow:0 0 18px var(--pink);}
 
   /* ===== КАТЕГОРИИ ===== */
-  .categories{
-    position:relative;z-index:2;
-    display:flex;flex-wrap:wrap;gap:10px;
-    justify-content:center;
-    padding:18px 16px 6px;
-  }
+  .categories{position:relative;z-index:2;display:flex;flex-wrap:wrap;gap:10px;justify-content:center;padding:18px 16px 6px;}
   .cat-btn{
-    cursor:pointer;
-    border:2px solid var(--cyan);
-    background:rgba(0,229,255,.08);
-    color:#fff;
-    padding:9px 18px;
-    border-radius:20px;
-    font-size:14px;
-    font-weight:bold;
-    letter-spacing:1px;
-    transition:.25s;
-    backdrop-filter:blur(6px);
+    cursor:pointer;border:2px solid var(--cyan);background:rgba(0,229,255,.08);color:#fff;
+    padding:9px 18px;border-radius:20px;font-size:14px;font-weight:bold;letter-spacing:1px;
+    transition:.25s;backdrop-filter:blur(6px);
   }
-  .cat-btn:hover{
-    background:var(--cyan);
-    color:#12001f;
-    box-shadow:0 0 18px var(--cyan);
-    transform:translateY(-2px);
-  }
-  .cat-btn.active{
-    background:var(--pink);
-    border-color:var(--pink);
-    color:#12001f;
-    box-shadow:0 0 20px var(--pink);
-  }
+  .cat-btn:hover{background:var(--cyan);color:#12001f;box-shadow:0 0 18px var(--cyan);transform:translateY(-2px);}
+  .cat-btn.active{background:var(--pink);border-color:var(--pink);color:#12001f;box-shadow:0 0 20px var(--pink);}
 
   /* ===== ТОВАРЫ ===== */
   main{position:relative;z-index:2;padding:20px 20px 60px;}
-  .grid{
-    max-width:1200px;margin:0 auto;
-    display:grid;
-    grid-template-columns:repeat(auto-fill,minmax(230px,1fr));
-    gap:22px;
-  }
+  .grid{max-width:1200px;margin:0 auto;display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:22px;}
+
+  /* Базовый стиль карточки — можно переопределить через CSS-переменные на .card */
   .card{
-    background:var(--panel);
-    border:2px solid rgba(255,255,255,.18);
-    border-radius:18px;
-    overflow:hidden;
-    backdrop-filter:blur(10px);
-    transition:.3s;
-    display:flex;flex-direction:column;
+    background:var(--panel);border:2px solid rgba(255,255,255,.18);border-radius:18px;
+    overflow:hidden;backdrop-filter:blur(10px);transition:.3s;display:flex;flex-direction:column;
   }
   .card:hover{
     transform:translateY(-6px) scale(1.02);
-    border-color:var(--pink);
+    border-color:var(--card-border, var(--pink));
     box-shadow:0 0 28px rgba(255,92,200,.55);
   }
   .card .img-wrap{
-    position:relative;
-    aspect-ratio:1/1;
-    background:#1c0330;
-    overflow:hidden;
+    position:relative;aspect-ratio:var(--card-img-ratio, 1/1);
+    background:#1c0330;overflow:hidden;cursor:pointer;
   }
-  .card img{
-    width:100%;height:100%;object-fit:cover;
-    transition:.4s;
-  }
+  .card img{width:100%;height:100%;object-fit:cover;transition:.4s;}
   .card:hover img{transform:scale(1.08);}
   .badge{
-    position:absolute;top:10px;left:10px;
-    background:var(--lime);
-    color:#12001f;
-    font-size:11px;font-weight:900;
-    padding:4px 10px;border-radius:12px;
-    letter-spacing:1px;
+    position:absolute;top:10px;left:10px;background:var(--lime);color:#12001f;
+    font-size:11px;font-weight:900;padding:4px 10px;border-radius:12px;letter-spacing:1px;
   }
-  .card-body{
-    padding:14px 14px 16px;
-    display:flex;flex-direction:column;gap:8px;flex:1;
-  }
+  .card-body{padding:14px 14px 16px;display:flex;flex-direction:column;gap:8px;flex:1;}
+  .card-cat{font-size:11px;color:var(--cyan);letter-spacing:1px;text-transform:uppercase;}
   .card-name{
-    font-size:15px;font-weight:bold;
-    line-height:1.3;
-    color:#fff;
-  }
-  .card-cat{
-    font-size:11px;color:var(--cyan);
-    letter-spacing:1px;text-transform:uppercase;
+    font-size:var(--card-name-size, 15px);
+    font-weight:var(--card-name-weight, bold);
+    font-family:var(--card-name-font, inherit);
+    line-height:1.3;color:#fff;cursor:pointer;
   }
   .card-price{
-    font-size:20px;font-weight:900;
-    color:var(--lime);
-    text-shadow:0 0 10px rgba(182,255,0,.5);
-    margin-top:auto;
+    font-size:var(--card-price-size, 20px);
+    font-weight:900;color:var(--lime);
+    text-shadow:0 0 10px rgba(182,255,0,.5);margin-top:auto;
   }
   .btn-cart{
-    cursor:pointer;
-    display:block;width:100%;
-    text-align:center;text-decoration:none;
-    padding:12px;
-    border:none;border-radius:12px;
-    font-family:inherit;
-    font-size:14px;font-weight:900;
-    letter-spacing:1.5px;
-    color:#12001f;
+    cursor:pointer;display:block;width:100%;text-align:center;text-decoration:none;
+    padding:12px;border:none;border-radius:12px;font-family:inherit;
+    font-size:14px;font-weight:900;letter-spacing:1.5px;color:#12001f;
     background:linear-gradient(90deg,var(--pink),var(--purple),var(--cyan));
-    background-size:200% 100%;
-    transition:.3s;
+    background-size:200% 100%;transition:.3s;
     box-shadow:0 0 14px rgba(164,92,255,.6);
   }
-  .btn-cart:hover{
-    background-position:100% 0;
-    box-shadow:0 0 24px var(--pink);
-    transform:scale(1.03);
-  }
+  .btn-cart:hover{background-position:100% 0;box-shadow:0 0 24px var(--pink);transform:scale(1.03);}
 
-  .status{
-    text-align:center;
-    color:var(--lime);
-    font-size:16px;
-    letter-spacing:1px;
-    padding:30px;
-  }
+  .status{text-align:center;color:var(--lime);font-size:16px;letter-spacing:1px;padding:30px;}
 
   /* ===== ФУТЕР ===== */
   footer{
-    position:relative;z-index:2;
-    margin-top:30px;
-    padding:34px 20px;
-    text-align:center;
-    background:rgba(0,0,0,.45);
-    border-top:2px solid rgba(255,92,200,.5);
+    position:relative;z-index:2;margin-top:30px;padding:34px 20px;text-align:center;
+    background:rgba(0,0,0,.45);border-top:2px solid rgba(255,92,200,.5);
     box-shadow:0 -6px 30px rgba(255,92,200,.25);
   }
-  footer h3{
-    font-size:20px;letter-spacing:3px;
-    color:var(--pink);
-    text-shadow:0 0 12px var(--pink);
-    margin-bottom:14px;
-  }
-  .contacts{
-    display:flex;flex-wrap:wrap;gap:14px;
-    justify-content:center;
-    margin-bottom:16px;
-  }
+  footer h3{font-size:20px;letter-spacing:3px;color:var(--pink);text-shadow:0 0 12px var(--pink);margin-bottom:14px;}
+  .contacts{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-bottom:16px;}
   .contacts a,.contacts span{
-    color:#fff;text-decoration:none;
-    font-size:14px;
-    padding:8px 16px;
-    border:1px solid rgba(0,229,255,.6);
-    border-radius:14px;
-    transition:.25s;
+    color:#fff;text-decoration:none;font-size:14px;padding:8px 16px;
+    border:1px solid rgba(0,229,255,.6);border-radius:14px;transition:.25s;
   }
-  .contacts a:hover{
-    background:var(--cyan);
-    color:#12001f;
-    box-shadow:0 0 16px var(--cyan);
-  }
+  .contacts a:hover{background:var(--cyan);color:#12001f;box-shadow:0 0 16px var(--cyan);}
   .copy{font-size:12px;color:rgba(255,255,255,.55);letter-spacing:1px;}
 
   .marquee{
-    position:relative;z-index:2;
-    overflow:hidden;white-space:nowrap;
+    position:relative;z-index:2;overflow:hidden;white-space:nowrap;
     background:linear-gradient(90deg,var(--purple),var(--pink),var(--cyan));
-    padding:8px 0;
-    font-weight:900;letter-spacing:3px;
-    color:#12001f;font-size:13px;
+    padding:8px 0;font-weight:900;letter-spacing:3px;color:#12001f;font-size:13px;
   }
-  .marquee span{
-    display:inline-block;
-    padding-left:100%;
-    animation:scroll 18s linear infinite;
-  }
-  @keyframes scroll{
-    0%{transform:translateX(0);}
-    100%{transform:translateX(-100%);}
-  }
+  .marquee span{display:inline-block;padding-left:100%;animation:scroll 18s linear infinite;}
+  @keyframes scroll{0%{transform:translateX(0);}100%{transform:translateX(-100%);}}
 </style>
 </head>
 <body>
@@ -282,8 +164,8 @@
 /* ============================================================
    КОНФИГ
    ============================================================ */
-const FEED_URL = "diana1_feed.yml";           // путь к вашему фиду
-const CART_REDIRECT = "https://altcraft.com/ru"; // куда ведём по кнопке
+const FEED_URL = "diana1_feed.yml";        // файл лежит рядом с index.html
+const CART_REDIRECT = "https://altcraft.com/ru";
 
 /* ============================================================
    ЗАГРУЗКА И ПАРСИНГ XML-ФИДА
@@ -292,9 +174,14 @@ async function loadFeed(){
   const statusEl = document.getElementById("status");
   try{
     const res = await fetch(FEED_URL + "?t=" + Date.now());
-    if(!res.ok) throw new Error("HTTP " + res.status);
+    if(!res.ok){
+      if(res.status === 404) throw new Error("Файл фида не найден. Загрузите diana1_feed.yml в репозиторий GitHub Pages.");
+      throw new Error("HTTP " + res.status);
+    }
     const text = await res.text();
     const xml  = new DOMParser().parseFromString(text, "application/xml");
+
+    if(xml.querySelector("parsererror")) throw new Error("Ошибка парсинга XML. Проверьте структуру фида.");
 
     // --- категории ---
     const categories = {};
@@ -306,6 +193,10 @@ async function loadFeed(){
     const offers = [];
     xml.querySelectorAll("offers > offer").forEach(o=>{
       const get = tag => o.querySelector(tag)?.textContent.trim() || "";
+      const params = {};
+      o.querySelectorAll("param").forEach(p=>{
+        params[p.getAttribute("name")] = p.textContent.trim();
+      });
       offers.push({
         id:       o.getAttribute("id"),
         name:     get("name"),
@@ -316,7 +207,8 @@ async function loadFeed(){
         url:      get("url"),
         vendor:   get("vendor"),
         description: get("description"),
-        available: o.getAttribute("available") !== "false"
+        available: o.getAttribute("available") !== "false",
+        params
       });
     });
 
@@ -326,7 +218,7 @@ async function loadFeed(){
     statusEl.style.display = "none";
   }catch(err){
     console.error(err);
-    statusEl.textContent = "⚠ Не удалось загрузить фид: " + err.message;
+    statusEl.textContent = "⚠ " + err.message;
     statusEl.style.color = "#ff5cc8";
   }
 }
@@ -362,9 +254,7 @@ function renderCategories(categories, offers){
       box.querySelectorAll(".cat-btn").forEach(x=>x.classList.remove("active"));
       b.classList.add("active");
       const cat = b.dataset.cat;
-      const filtered = cat === "all"
-        ? ALL_OFFERS
-        : ALL_OFFERS.filter(o=>o.categoryId === cat);
+      const filtered = cat === "all" ? ALL_OFFERS : ALL_OFFERS.filter(o=>o.categoryId === cat);
       renderProducts(filtered, CATEGORIES);
     });
   });
@@ -386,13 +276,23 @@ function renderProducts(offers, categories){
     const card = document.createElement("div");
     card.className = "card";
 
+    // Применяем параметры стилизации из фида (если есть)
+    const p = o.params || {};
+    if(p["card_img_ratio"])   card.style.setProperty("--card-img-ratio", p["card_img_ratio"]);
+    if(p["card_border"])      card.style.setProperty("--card-border", p["card_border"]);
+    if(p["card_name_size"])   card.style.setProperty("--card-name-size", p["card_name_size"]);
+    if(p["card_name_weight"]) card.style.setProperty("--card-name-weight", p["card_name_weight"]);
+    if(p["card_name_font"])   card.style.setProperty("--card-name-font", p["card_name_font"]);
+    if(p["card_price_size"])  card.style.setProperty("--card-price-size", p["card_price_size"]);
+
     const catName = categories[o.categoryId] || "Товары";
+    const fallbackImg = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><rect width='300' height='300' fill='%231c0330'/><text x='50%' y='50%' fill='%23ff5cc8' font-size='20' text-anchor='middle'>Y2K SHOP</text></svg>";
 
     card.innerHTML = `
       <div class="img-wrap">
         <span class="badge">${o.available ? "В НАЛИЧИИ" : "НЕТ"}</span>
         <img src="${escapeAttr(o.picture)}" alt="${escapeAttr(o.name)}" loading="lazy"
-             onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22300%22><rect width=%22300%22 height=%22300%22 fill=%22%231c0330%22/><text x=%2250%25%22 y=%2250%25%22 fill=%22%23ff5cc8%22 font-size=%2220%22 text-anchor=%22middle%22>Y2K SHOP</text></svg>'">
+             onerror="this.src='${fallbackImg}'">
       </div>
       <div class="card-body">
         <div class="card-cat">${escapeHtml(catName)}</div>
@@ -402,18 +302,9 @@ function renderProducts(offers, categories){
       </div>
     `;
 
-    /* --- КЛИК ПО КАРТИНКЕ И НАЗВАНИЮ ВЕДЁТ НА СТРАНИЦУ ТОВАРА ---
-       Ссылка на товар и картинка берутся ИЗ ФИДА.
-       Чтобы картинка и ссылка «шли с вашего нового сайта»,
-       можно заменить их на прокси-URL:
-       /img?id=<offer_id>  и  /product?id=<offer_id>
-       (см. блок PROXY ниже).                                        */
-    card.querySelector(".img-wrap").addEventListener("click", ()=>{
-      window.open(o.url, "_blank", "noopener");
-    });
-    card.querySelector(".card-name").addEventListener("click", ()=>{
-      window.open(o.url, "_blank", "noopener");
-    });
+    // Клик по картинке/названию → страница товара
+    card.querySelector(".img-wrap").addEventListener("click", ()=> window.open(o.url, "_blank", "noopener"));
+    card.querySelector(".card-name").addEventListener("click", ()=> window.open(o.url, "_blank", "noopener"));
 
     grid.appendChild(card);
   });
@@ -434,24 +325,14 @@ function escapeHtml(s){
 function escapeAttr(s){ return escapeHtml(s); }
 
 /* ============================================================
-   PROXY-ВАРИАНТ (по желанию)
+   ПРОКСИ-ВАРИАНТ ДЛЯ ССЫЛОК (если нужно)
    ------------------------------------------------------------
-   Если нужно, чтобы картинка и ссылка на товар «шли с вашего
-   нового сайта», а не напрямую с Joom, замените в renderProducts:
-
-     src="${escapeAttr(o.picture)}"
-     → src="/img/${o.id}"
-
-     window.open(o.url, ...)
-     → window.open("/product/${o.id}", ...)
-
-   и на бэкенде (Node/PHP/Python) отдавайте 302-редирект
-   или проксируйте контент по этим адресам.
+   Чтобы картинка и ссылка шли через ваш домен, замените:
+     src="${escapeAttr(o.picture)}"  →  src="/img/${o.id}"
+     window.open(o.url, ...)         →  window.open("/product/${o.id}", ...)
+   и настройте на сервере редирект/прокси.
    ============================================================ */
 
-/* ============================================================
-   СТАРТ
-   ============================================================ */
 loadFeed();
 </script>
 </body>
